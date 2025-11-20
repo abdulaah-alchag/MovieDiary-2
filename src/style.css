@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-background-main: #0a0f24;
+  --color-background-cards: #1c2333;
+  --color-popcorn-gold-accent1: #eec85c;
+  --color-mint-accent2: #4ad5c3;
+  --color-red-coral-accent3: #f25e5e;
+  --color-main-text-light-grey: #e5e7eb;
+  --color-secondary-text-grey-blue: #9ca3af;
+}
+
+@layer base {
+  body {
+    @apply font-[Nunito_Sans] bg-background-main text-main-text-light-grey;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-[Poppins] text-popcorn-gold-accent1;
+  }
+  a,
+  button {
+    @apply transition-all duration-300;
+  }
+  a:hover,
+  button:hover {
+    @apply text-mint-accent2;
+  }
+  nav {
+    @apply bg-background-cards/60 border-b border-main-text-light-grey/10;
+  }
+}
