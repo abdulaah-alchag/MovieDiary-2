@@ -4,58 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Popcorn Diary</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="icon" type="image/png" href="./public/favicon.png" />
     <link href="./src/style.css" rel="stylesheet">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Nunito+Sans:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <style type="text/tailwindcss">
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
-
-      @theme {
-        --color-background-main: #0a0f24;
-        --color-background-cards: #1c2333;
-        --color-popcorn-gold-accent1: #eec85c;
-        --color-mint-accent2: #4ad5c3;
-        --color-red-coral-accent3: #f25e5e;
-        --color-main-text-light-grey: #e5e7eb;
-        --color-secondary-text-grey-blue: #9ca3af;
-      }
-
-      @layer base {
-        body {
-          @apply font-[Nunito_Sans]
-          bg-background-main
-          text-main-text-light-grey;
-        }
-        h1,
-        h2,
-        h3 {
-          @apply font-[Poppins] text-popcorn-gold-accent1 font-semibold;
-        }
-        a,
-        button {
-          @apply transition-all duration-300 ease-in-out;
-        }
-        a:hover,
-        button:hover {
-          @apply text-mint-accent2;
-        }
-        nav {
-          @apply backdrop-blur-md bg-background-cards/60 border-b border-main-text-light-grey/10;
-        }
-      }
-
-      @layer components {
-        /* Create new Tailwind classes aka. components in `@layer components`  */
-        /* Use @apply to inline any existing utility classes into your own custom CSS. */
-      }
-    </style>
   </head>
 
   <body
@@ -71,11 +26,13 @@
         <!-- LOGO + TEXT -->
         <div class="flex items-center gap-3 sm:gap-4">
           <!-- Logo -->
-          <img
-            src="assets/images/popcorn-logo.png"
+           <a href="index.html">
+            <img
+            src="./public/popcorn-logo.png"
             alt="Popcorn Diary Logo"
-            class="h-20 w-auto drop-shadow-md"
-          />
+            class="h-20 w-auto drop-shadow-md"/>
+          </a>
+
           <!-- Text -->
           <div class="flex flex-col leading-tight">
             <h1
@@ -95,7 +52,7 @@
           <li>
             <a
               href="index.html"
-              class="hover:text-mint-accent2 transition-colors duration-200"
+              class="active-link"
               >Home</a
             >
           </li>
@@ -117,8 +74,8 @@
       <!-- Content will go here -->
 
         <!-- Search Section -->
-       <section class="flex space-x-10 justify-between items-center m-6 px-6 lg:h-[200px] 
-       bg-background-cards/70 rounded-xl overflow-hidden shadow-md border border-popcorn-gold-accent1/10 transition transform hover:-translate-y-1 
+       <section class="flex space-x-10 justify-between items-center m-6 px-6 lg:h-[200px]
+       bg-background-cards/70 rounded-xl overflow-hidden shadow-md border border-popcorn-gold-accent1/10 transition transform hover:-translate-y-1
        hover:scale-[1.02] hover:shadow-lg duration-300
        ">
         <div>
@@ -130,15 +87,15 @@
           <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
             <div class="relative">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2"
             d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
             </div>
           <input type="search" id="search-input" class="w-full p-3 ps-9 bg-neutral-secondary-medium border border-popcorn-gold-accent1/10 text-heading rounded-lg
-          text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs 
+          text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs
           " placeholder="Search" required  />
-          <button type= 'submit' class="bg-red-400 border 
-          absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border-transparent focus:ring-4 focus:ring-brand-medium 
+          <button type= 'submit' class="bg-red-400 border
+          absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border-transparent focus:ring-4 focus:ring-brand-medium
           shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none
           ">Search</button>
           </div>
@@ -162,52 +119,6 @@
         id="movies-container"
         class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6"
       >
-        <!-- <article
-          class="bg-background-cards/70 rounded-xl overflow-hidden shadow-md border border-popcorn-gold-accent1/10 transition transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg duration-300"
-        >
-
-          <img src="" alt="Poster" class="w-full h-64 object-cover" />
-
-
-          <div class="p-4 flex flex-col justify-between h-44">
-            <div>
-              <h2 class="text-lg font-semibold text-popcorn-gold-accent1">
-                Inception
-              </h2>
-              <p
-                class="mt-1 text-sm text-secondary-text-grey-blue line-clamp-3"
-              >
-                A mind-bending thriller where dream invasion blurs the line
-                between reality and illusion.
-              </p>
-            </div>
-
-
-            <div class="mt-3 flex items-center justify-between gap-3">
-              <div class="text-sm text-secondary-text-grey-blue">
-                Release: 2010
-              </div>
-              <button
-                class="add-fav inline-flex items-center gap-2 bg-popcorn-gold-accent1 text-background-main px-3 py-2 rounded-md font-semibold hover:bg-red-coral-accent3 hover:text-background-main transition-all shadow-sm hover:shadow-md"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.42
-               3.42 5 5.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99
-               14.96 5 16.5 5 18.58 5 20 6.42 20 8.5c0 3.78-3.4
-               6.86-8.55 11.54L12 21.35z"
-                  />
-                </svg>
-                Add
-              </button>
-            </div>
-          </div>
-        </article> -->
       </section>
     </main>
 

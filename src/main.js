@@ -1,3 +1,4 @@
+import './style.css';
 import { accessTokenAuth, apiKey } from "./private.js";
 
 const url = "https://api.themoviedb.org/3/authentication";
@@ -195,9 +196,9 @@ const searchApi = async function (query) {
 
       <!-- Kart Inhalte in overlaym-->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 pt-14">
-          
+
           <img src="https://image.tmdb.org/t/p/w500${element[0].poster_path}" class="rounded-xl shadow-lg max-h-lg object-cover" />
-          
+
           <div class="flex flex-col gap-4">
             <h2 class="text-3xl font-bold">${element[0].title}</h2>
             <p class="text-secondary-text-grey-blue text-lg">${element[0].release_date}</p>

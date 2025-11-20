@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background-main: #0a0f24;
+  --color-background-cards: #1c2333;
+  --color-popcorn-gold-accent1: #eec85c;
+  --color-mint-accent2: #4ad5c3;
+  --color-red-coral-accent3: #f25e5e;
+  --color-main-text-light-grey: #e5e7eb;
+  --color-secondary-text-grey-blue: #9ca3af;
+
+  /* Fonts */
+  --font-nunito: "Nunito Sans", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-nunito bg-background-main text-main-text-light-grey;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-poppins text-popcorn-gold-accent1 font-semibold;
+  }
+
+  a,
+  button {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  a:hover,
+  button:hover {
+    @apply text-mint-accent2;
+  }
+
+  nav {
+    @apply backdrop-blur-md bg-background-cards/60 border-b border-main-text-light-grey/10;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-background-cards p-6 rounded-xl shadow-lg;
+  }
+}
+
+ @layer utilities {
+        .active-link {
+          @apply text-popcorn-gold-accent1 drop-shadow-[0_0_6px_rgba(255,217,119,0.8)];
+        }
+      }

@@ -4,58 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Journal | Popcorn Diary</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/png" href="./public/favicon.png" />
+    <link href="./src/style.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Nunito+Sans:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <style type="text/tailwindcss">
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
-
-      @theme {
-        --color-background-main: #0a0f24;
-        --color-background-cards: #1c2333;
-        --color-popcorn-gold-accent1: #eec85c;
-        --color-mint-accent2: #4ad5c3;
-        --color-red-coral-accent3: #f25e5e;
-        --color-main-text-light-grey: #e5e7eb;
-        --color-secondary-text-grey-blue: #9ca3af;
-      }
-
-      @layer base {
-        body {
-          @apply font-[Nunito_Sans]
-          bg-background-main
-          text-main-text-light-grey;
-        }
-        h1,
-        h2,
-        h3 {
-          @apply font-[Poppins] text-popcorn-gold-accent1 font-semibold;
-        }
-        a,
-        button {
-          @apply transition-all duration-300 ease-in-out;
-        }
-        a:hover,
-        button:hover {
-          @apply text-mint-accent2;
-        }
-        nav {
-          @apply backdrop-blur-md bg-background-cards/60 border-b border-main-text-light-grey/10;
-        }
-      }
-
-      @layer components {
-        /* Create new Tailwind classes aka. components in `@layer components`  */
-        /* Use @apply to inline any existing utility classes into your own custom CSS. */
-      }
-    </style>
-
     <!--  style für Notizen -->
     <style>
       .slide {
@@ -84,11 +39,12 @@
         <!-- LOGO + TEXT -->
         <div class="flex items-center gap-3 sm:gap-4">
           <!-- Logo -->
-          <img
-            src="assets/images/popcorn-logo.png"
+          <a href="index.html">
+            <img
+            src="./public/popcorn-logo.png"
             alt="Popcorn Diary Logo"
-            class="h-20 w-auto drop-shadow-md"
-          />
+            class="h-20 w-auto drop-shadow-md"/>
+          </a>
           <!-- Text -->
           <div class="flex flex-col leading-tight">
             <h1
@@ -115,7 +71,7 @@
           <li>
             <a
               href="journal.html"
-              class="hover:text-mint-accent2 transition-colors duration-200"
+              class="active-link"
               >Journal</a
             >
           </li>
@@ -156,6 +112,6 @@
     >
       <p>© 2025 Popcorn Diary — Made with 🍿 by Our Team</p>
     </footer>
-    <script src="./journal.js" type="module"></script>
+    <script src="./src/journal.js" type="module"></script>
   </body>
 </html>
