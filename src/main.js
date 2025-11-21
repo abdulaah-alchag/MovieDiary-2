@@ -1,7 +1,11 @@
-import './style.css';
+import "./style.css";
 import { accessTokenAuth, apiKey } from "./private.js";
-import { handleFavoriteAdding, updateFavoriteButtons } from './modules/favoritesControl.js';
-import { localStorageInit } from './modules/localStorageInit.js';
+import {
+  handleFavoriteAdding,
+  updateFavoriteButtons,
+} from "./modules/favoritesControl.js";
+import { localStorageInit } from "./modules/localStorageInit.js";
+import { getPopularMovies, getTmdbConfig } from "./modules/tmdbApiAccess.js";
 
 const url = "https://api.themoviedb.org/3/authentication";
 
@@ -23,7 +27,6 @@ const options = {
 };
 
 const movieContainer = document.querySelector(`#movies-container`);
-let ImageBaseUrl = "";
 
 /* # Select image size. Options are:
  * "w45", "w92", "w154", "w185" ,"w300", "w500", "original"
@@ -37,20 +40,16 @@ const ImageFileSize = "original";
  * - release_date
  * - title
  */
-function renderMovieCards(movieData, NumberOfMovies) {
+function renderMovieCards(movieData, configData) {
   let index = 0;
   for (const element of movieData.results) {
     if (index++ < MAX_NR_OF_MOVIES) {
       const html = `
         <article
-          class="#${
-            element.id
-          } bg-background-cards/70 rounded-xl overflow-hidden shadow-md border border-popcorn-gold-accent1/10 transition transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg duration-300"
+          class="#${element.id} bg-background-cards/70 rounded-xl overflow-hidden shadow-md border border-popcorn-gold-accent1/10 transition transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg duration-300"
         >
           <!-- Poster -->
-          <img src="https://${ImageBaseUrl.slice(7)}${ImageFileSize}${
-        element.poster_path
-      }" alt="Poster" class="w-full aspect-[2/3] object-cover rounded-t-xl" />
+          <img src="${configData.images.secure_base_url}${ImageFileSize}${element.poster_path}" alt="Poster" class="w-full aspect-[2/3] object-cover rounded-t-xl" />
 
           <!-- Content -->
           <div class="p-4 flex flex-col min-h-[220px]">
@@ -104,51 +103,11 @@ function renderMovieCards(movieData, NumberOfMovies) {
   }
 }
 
-function getTmdbConfig() {
-  fetch(
-    TMDB_ApiV3BaseUrl + TMDB_ConfigurationEndpoint + QUERY + API_KEY
-    //options
-  )
-    .then((res) => {
-      if (!res.ok) throw new Error("Request Error: Get configuration failed");
-      // Or access the JSON data in the response
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      ImageBaseUrl = data.images.base_url;
-    })
-    .catch((err) => console.error(err));
-}
-
-// Check if there are already saved favorite movies
-localStorageInit();
-// Click listener on movie container
-handleFavoriteAdding();
-
-
-
-getTmdbConfig();
-
-/* TODO: Use async function */
-function getPopularMovies() {
-  fetch(
-    TMDB_ApiV3BaseUrl +
-      TMDB_PopularMoviesEndpoint +
-      QUERY +
-      API_KEY +
-      TMDB_PopMov_options
-    // options
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      renderMovieCards(data);
-    })
-    .catch((err) => console.error(err));
-}
-
-getPopularMovies();
+/**
+ * Start fetching data from TMDB
+ * Pass through function renderMovieCards and call it after config- and movie-data is safely fetched
+ */
+getPopularMovies(renderMovieCards);
 
 /////////////////abood///////////////////////
 
@@ -187,7 +146,7 @@ const searchApi = async function (query) {
     }
 
     movieContainer.innerHTML = "";
-    renderMovieCards(data);
+    renderMovieCards(data, getTmdbConfig());
     detailsCard.innerHTML = `
 
       <!-- close Button-->
