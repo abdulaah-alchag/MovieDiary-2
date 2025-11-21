@@ -1,11 +1,10 @@
 import {
-  loadFavorites,
   handelFavoritesRemove,
+  loadFavorites,
 } from "./modules/favoritesControl.js";
 import { getRefs } from "./modules/getRefs.js";
 
 const { movieContainer: favoritesContainer } = getRefs();
-
 
 // Loading favorites when opening a page
 loadFavorites();
@@ -15,6 +14,7 @@ loadFavorites();
 const overlay = document.querySelector("#movie-details-overlay");
 const detailsCard = document.querySelector("#movie-details-card");
 
+// Karte öffnen
 favoritesContainer.addEventListener("click", (e) => {
   const btn = e.target.closest(".show-details");
   if (!btn) return;
@@ -105,7 +105,7 @@ function loadNotes(movieId) {
       (n) => `
       <div class="bg-background-cards p-4 rounded-lg border border-secondary-text-grey-blue/20">
         ${n}
-      </div>`
+      </div>`,
     )
     .join("");
 }
@@ -126,8 +126,6 @@ document.addEventListener("click", (e) => {
   input.value = "";
   loadNotes(movieId);
 });
-
-
 
 ////////////////// Remove Favorite ////////////////////
 
