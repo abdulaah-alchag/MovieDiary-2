@@ -61,23 +61,8 @@ export const searchApi = async function (query) {
             <h2 class="text-3xl font-bold">${element[0].title}</h2>
             <p class="text-secondary-text-grey-blue text-lg">${element[0].release_date}</p>
             <p class="text-secondary-text-grey-blue leading-relaxed">${element[0].overview}</p>
-
-          <!-- Notizen Bereich -->
-            <textarea id="note-input"
-              class="bg-background-main text-main-text-light-grey p-4 rounded-xl border border-secondary-text-grey-blue/30"
-              placeholder="Schreibe eine Notiz..."></textarea>
-
-            <button id="add-note" data-id="${element[0].id}"
-              class="self-start px-6 py-2 bg-popcorn-gold-accent1 text-background-main rounded-lg hover:bg-red-coral-accent3 transition-all">
-              senden
-            </button>
           </div>
         </div>
-
-        <h3 class="text-xl font-bold mt-10 mb-4">Recent Noten</h3>
-        <div id="notes-list" class="flex flex-col gap-4"></div>
-        </div>
-
         `;
     overlay.classList.remove("hidden");
     detailsCard.classList.remove("opacity-0", "translate-y-5", "scale-95");
