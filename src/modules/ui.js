@@ -22,11 +22,11 @@ export function buildDetailsHTML(movie) {
 
         <textarea id="note-input"
           class="bg-background-main text-main-text-light-grey p-4 rounded-xl border border-secondary-text-grey-blue/30"
-          placeholder="Schreibe eine Notiz..."></textarea>
+          placeholder="Write a note..."></textarea>
 
         <button id="add-note" data-id="${movie.id}"
           class="self-start px-6 py-2 bg-popcorn-gold-accent1 text-background-main rounded-lg hover:bg-red-coral-accent3 transition-all">
-          senden
+          send
         </button>
       </div>
     </div>
