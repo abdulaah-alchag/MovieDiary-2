@@ -111,8 +111,19 @@ export function renderMovieCards(movieData, configData) {
  */
 getPopularMovies(renderMovieCards);
 
+ empty-fav
+//////// souher
+document.addEventListener("DOMContentLoaded", () => {
+  handleFavoriteAdding();
+  updateFavoriteButtons();
+});
+
+/////////////////abood///////////////////////
+
+
 /////////////////////////////////////////////////////////
 // Search Functionality
+ main
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("search");
 

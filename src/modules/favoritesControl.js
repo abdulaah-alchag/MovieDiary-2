@@ -1,62 +1,62 @@
 import { getRefs } from "./getRefs.js";
 
-export const handleFavoriteAdding =()=>{
-// Click listener on movie container
-const refs = getRefs();
-refs.movieContainer.addEventListener("click", (e) => {
-  const btn = e.target.closest(".add-fav");
-  if (!btn) return;
+export const handleFavoriteAdding = () => {
+  // Click listener on movie container
+  const refs = getRefs();
+  refs.movieContainer.addEventListener("click", (e) => {
+    const btn = e.target.closest(".add-fav");
+    if (!btn) return;
 
-  const addedFilmData = {
-    overview: btn.dataset.overview,
-    id: btn.dataset.id,
-    title: btn.dataset.title,
-    poster_path: btn.dataset.poster_path,
-    release_date: btn.dataset.release_date,
-  };
+    const addedFilmData = {
+      overview: btn.dataset.overview,
+      id: btn.dataset.id,
+      title: btn.dataset.title,
+      poster_path: btn.dataset.poster_path,
+      release_date: btn.dataset.release_date,
+    };
 
-  const storageData = JSON.parse(localStorage.getItem("favorites")) || [];
-  const alreadyExists = storageData.find(
-    (item) => item.id === addedFilmData.id
-  );
-
-  // If the movie is already in your favorites, delete it.
-  if (alreadyExists) {
-    const updatedData = storageData.filter(
-      (item) => item.id !== addedFilmData.id
+    const storageData = JSON.parse(localStorage.getItem("favorites")) || [];
+    const alreadyExists = storageData.find(
+      (item) => item.id === addedFilmData.id,
     );
-    localStorage.setItem("favorites", JSON.stringify(updatedData));
 
-    // Change the button back to "Add"
-    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+    // If the movie is already in your favorites, delete it.
+    if (alreadyExists) {
+      const updatedData = storageData.filter(
+        (item) => item.id !== addedFilmData.id,
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedData));
+
+      // Change the button back to "Add"
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
         2 6.42 3.42 5 5.5 5c1.54 0 3.04.99 3.57 2.36h1.87
         C13.46 5.99 14.96 5 16.5 5C18.58 5 20 6.42 20 8.5
         c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
       </svg>
       Add`;
-    btn.classList.add("bg-popcorn-gold-accent1");
-    btn.classList.remove("bg-mint-accent2");
+      btn.classList.add("bg-popcorn-gold-accent1");
+      btn.classList.remove("bg-mint-accent2");
 
-    console.log(
-      `The film "${addedFilmData.title}" has been removed from favorites.`
-    );
-  } else {
-    // Otherwise, add the film to your favorites
-    const newStorageData = [...storageData, addedFilmData];
-    localStorage.setItem("favorites", JSON.stringify(newStorageData));
+      console.log(
+        `The film "${addedFilmData.title}" has been removed from favorites.`,
+      );
+    } else {
+      // Otherwise, add the film to your favorites
+      const newStorageData = [...storageData, addedFilmData];
+      localStorage.setItem("favorites", JSON.stringify(newStorageData));
 
-    // Change the button to "Added"
-    btn.innerHTML = `Added`;
-    btn.classList.add("bg-mint-accent2");
-    btn.classList.remove("bg-popcorn-gold-accent1");
+      // Change the button to "Added"
+      btn.innerHTML = `Added`;
+      btn.classList.add("bg-mint-accent2");
+      btn.classList.remove("bg-popcorn-gold-accent1");
 
-    console.log(
-      `The film "${addedFilmData.title}" has been added to your favorites`
-    );
-  }
-});
-}
+      console.log(
+        `The film "${addedFilmData.title}" has been added to your favorites`,
+      );
+    }
+  });
+};
 
 // Function to check if a movie is already in favorites
 function isFavorite(id) {
@@ -66,7 +66,7 @@ function isFavorite(id) {
 
 // Function to update buttons after downloading movies
 
-export const updateFavoriteButtons=()=> {
+export const updateFavoriteButtons = () => {
   const refs = getRefs();
   refs.favoriteControlCardButtons.forEach((btn) => {
     const movieId = btn.dataset.id;
@@ -94,23 +94,24 @@ export const updateFavoriteButtons=()=> {
       btn.classList.remove("bg-mint-accent2");
     }
   });
-}
+};
 
-//////////// Downloading selected movies from localStorage //////////
+// //////////// Downloading selected movies from localStorage //////////
 export const loadFavorites = () => {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-const refs = getRefs();
-  // If there is nothing, we show a message
-  if (favorites.length === 0) {
-    refs.movieContainer.innerHTML = `
-      <div class="col-span-full flex justify-center items-center py-10">
-        <p class="text-secondary-text-grey-blue text-lg text-center">
-           You haven’t added any favorite movies yet 🎬
-        </p>
-      </div>
-    `;
-    return;
-  }
+  const refs = getRefs();
+
+  // // If there is nothing, we show a message
+  // if (favorites.length === 0) {
+  //   refs.movieContainer.innerHTML = `
+  //     <div class="col-span-full flex justify-center items-center py-10">
+  //       <p class="text-secondary-text-grey-blue text-lg text-center">
+  //          You haven’t added any favorite movies yet 🎬
+  //       </p>
+  //     </div>
+  //   `;
+  //   return;
+  // }
 
   // Cleaning the container
   refs.movieContainer.innerHTML = "";
@@ -190,11 +191,11 @@ const refs = getRefs();
 
     refs.movieContainer.insertAdjacentHTML("beforeend", html);
   });
-}
+};
 
 ////////////////// Remove Favorite ////////////////////
 export const handelFavoritesRemove = (e) => {
-  const refs=getRefs()
+  const refs = getRefs();
   const btn = e.target.closest(".remove-fav");
   if (!btn) return;
 
