@@ -69,3 +69,50 @@ document.addEventListener("click", (e) => {
   // Notes neu laden
   loadNotes(movieId);
 });
+
+// // Prüfen ob leer
+setTimeout(() => {
+  checkEmptyFavoritesState();
+}, 0);
+
+// ------------------------
+function checkEmptyFavoritesState() {
+  // stelle sicher, dass wir auf der Journal-Seite sind
+  const journalPage = document.querySelector("#journal-page");
+  if (!journalPage) return; // <-- verhindert Fehler auf der Homepage
+
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  if (favorites.length === 0) {
+    journalPage.innerHTML = `
+      <div id="empty-state"
+        class="col-span-full flex flex-col justify-center items-center opacity-0 translate-y-5 transition-all duration-700">
+
+        <dotlottie-wc class="w-96"
+          src="https://lottie.host/3d1f3724-085b-4212-81d8-0c400bd3301f/6QhfCdtOsf.lottie"
+          autoplay loop>
+        </dotlottie-wc>
+
+        <p class="text-secondary-text-grey-blue text-2xl text-center font-semibold">
+          Your journal is empty 🍿
+        </p>
+
+        <p class="text-secondary-text-grey-blue text-md mt-2 mb-6 text-center">
+          Start adding favorite movies and write your notes!
+        </p>
+
+        <a href="index.html"
+          class="px-6 py-3 bg-popcorn-gold-accent1 text-background-main rounded-lg
+          hover:bg-red-coral-accent3 transition-all shadow-md hover:shadow-lg">
+          Discover Movies
+        </a>
+      </div>
+    `;
+
+    setTimeout(() => {
+      document
+        .querySelector("#empty-state")
+        .classList.remove("opacity-0", "translate-y-5");
+    }, 50);
+  }
+}

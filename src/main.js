@@ -1,11 +1,11 @@
-import "./style.css";
-import { accessTokenAuth, apiKey } from "./private.js";
 import {
   handleFavoriteAdding,
   updateFavoriteButtons,
 } from "./modules/favoritesControl.js";
 import { localStorageInit } from "./modules/localStorageInit.js";
 import { getPopularMovies, getTmdbConfig } from "./modules/tmdbApiAccess.js";
+import { accessTokenAuth, apiKey } from "./private.js";
+import "./style.css";
 
 const url = "https://api.themoviedb.org/3/authentication";
 
@@ -108,6 +108,12 @@ function renderMovieCards(movieData, configData) {
  * Pass through function renderMovieCards and call it after config- and movie-data is safely fetched
  */
 getPopularMovies(renderMovieCards);
+
+//////// souher
+document.addEventListener("DOMContentLoaded", () => {
+  handleFavoriteAdding();
+  updateFavoriteButtons();
+});
 
 /////////////////abood///////////////////////
 
