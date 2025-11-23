@@ -2,7 +2,13 @@ import {
   TMDB_ApiV3BaseUrl,
   TMDB_PopMov_options,
   TMDB_SeachEndpoint,
+  detailsCard,
+  movieContainer,
+  options,
+  overlay,
+  renderMovieCards,
 } from "../main.js";
+import { getTmdbConfig } from "./tmdbApiAccess.js";
 
 export const searchApi = async function (query) {
   const QUERY = `?query=`;

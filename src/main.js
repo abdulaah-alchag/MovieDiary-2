@@ -3,7 +3,7 @@ import {
   updateFavoriteButtons,
 } from "./modules/favoritesControl.js";
 import { localStorageInit } from "./modules/localStorageInit.js";
-import { searchApi } from "./modules/search.js";
+import { searchApi } from "./modules/searchApi.js";
 import { getPopularMovies, getTmdbConfig } from "./modules/tmdbApiAccess.js";
 import { accessTokenAuth, apiKey } from "./private.js";
 import "./style.css";
@@ -20,7 +20,7 @@ const QUERY = "?";
 const API_KEY = `api_key=${apiKey}`;
 export const TMDB_SeachEndpoint = `/search/movie`;
 
-const options = {
+export const options = {
   method: "GET",
   headers: {
     accept: "application/json",
@@ -28,7 +28,7 @@ const options = {
   },
 };
 
-const movieContainer = document.querySelector(`#movies-container`);
+export const movieContainer = document.querySelector(`#movies-container`);
 
 /* # Select image size. Options are:
  * "w45", "w92", "w154", "w185" ,"w300", "w500", "original"
@@ -42,7 +42,7 @@ const ImageFileSize = "original";
  * - release_date
  * - title
  */
-function renderMovieCards(movieData, configData) {
+export function renderMovieCards(movieData, configData) {
   let index = 0;
   for (const element of movieData.results) {
     if (index++ < MAX_NR_OF_MOVIES) {
@@ -116,8 +116,8 @@ getPopularMovies(renderMovieCards);
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("search");
 
-const overlay = document.querySelector("#movie-details-overlay");
-const detailsCard = document.querySelector("#movie-details-card");
+export const overlay = document.querySelector("#movie-details-overlay");
+export const detailsCard = document.querySelector("#movie-details-card");
 // Declare the search input as a Form
 form.addEventListener("submit", (e) => {
   e.preventDefault();
