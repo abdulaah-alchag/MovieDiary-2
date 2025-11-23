@@ -103,6 +103,8 @@ export function renderMovieCards(movieData, configData) {
       break;
     }
   }
+  handleFavoriteAdding(); //souher
+  updateFavoriteButtons(); //souher
 }
 
 /**
@@ -111,19 +113,13 @@ export function renderMovieCards(movieData, configData) {
  */
 getPopularMovies(renderMovieCards);
 
- empty-fav
-//////// souher
-document.addEventListener("DOMContentLoaded", () => {
-  handleFavoriteAdding();
-  updateFavoriteButtons();
-});
+empty - fav;
 
 /////////////////abood///////////////////////
 
-
 /////////////////////////////////////////////////////////
 // Search Functionality
- main
+main;
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("search");
 
