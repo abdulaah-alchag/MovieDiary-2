@@ -2,7 +2,10 @@ export const accessTokenAuth =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDE4OGY2ZTExYzY1NzlmMDZlMzQzOWJkYmIwNzE4OSIsIm5iZiI6MTc2Mjg5ODAwNC4xNDUsInN1YiI6IjY5MTNiMDU0NzAwNDhkODJlYzlhY2NiZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.G_O2_echWC-sjWgWSdiL6YuaZlbtUL7d5PoEC5260Ik";
 export const apiKey = "a0188f6e11c6579f06e3439bdbb07189";
 
-const TMDB_ApiV3BaseUrl = "https://api.themoviedb.org/3";
+import {
+  TMDB_ApiV3BaseUrl,
+} from "../main.js";
+
 const TMDB_ConfigurationEndpoint = "/configuration";
 const TMDB_PopularMoviesEndpoint = "/movie/popular";
 const NumberOfPages = "1";
@@ -18,9 +21,18 @@ const options = {
   },
 };
 
+// const errorData = [
+// {
+//   id: 0,
+//   overview: "Load Error!",
+//   poster_path: "",
+//   release_date: "n/a",
+//   title: "n/a",
+// }];
+
 let tmdbConfig;
 /**
- * Get Popular Movie from TMDB
+ * Get Popular Movies from TMDB
  * @param {function} renderMoviesFunc - Reference to the render movie function
  */
 export function getPopularMovies(renderMoviesFunc) {
@@ -42,16 +54,24 @@ export function getPopularMovies(renderMoviesFunc) {
           API_KEY +
           TMDB_PopMov_options,
       )
-        .then((res) => res.json())
+        .then((res) => {
+            if (!res.ok) throw new Error("Request Error: Get movie data failed");
+            return (res.json())})
         .then((movieData) => {
           console.log("Fetched movie data", movieData);
           renderMoviesFunc(movieData, configData);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            // renderMoviesFunc(errorData);
+            console.error(err)});
     })
     .catch((err) => console.error(err));
 }
 
+/**
+ * Return last fetched TMDB config data
+ * @return {object}
+ */
 export function getTmdbConfig() {
   return tmdbConfig;
 }

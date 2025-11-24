@@ -4,20 +4,16 @@ import {
 } from "./modules/favoritesControl.js";
 import { localStorageInit } from "./modules/localStorageInit.js";
 import { searchApi } from "./modules/searchApi.js";
-import { getPopularMovies, getTmdbConfig } from "./modules/tmdbApiAccess.js";
-import { accessTokenAuth, apiKey } from "./private.js";
+import { getPopularMovies, getTmdbConfig, accessTokenAuth, apiKey } from "./modules/tmdbApiAccess.js";
+// import { accessTokenAuth, apiKey } from "./private.js";
 import "./style.css";
 
 const url = "https://api.themoviedb.org/3/authentication";
 
 export const TMDB_ApiV3BaseUrl = "https://api.themoviedb.org/3";
-const TMDB_ConfigurationEndpoint = "/configuration";
-const TMDB_PopularMoviesEndpoint = "/movie/popular";
 const NumberOfPages = "1";
 export const TMDB_PopMov_options = `&language=en-US&page=${NumberOfPages}`;
 const MAX_NR_OF_MOVIES = 16;
-const QUERY = "?";
-const API_KEY = `api_key=${apiKey}`;
 export const TMDB_SeachEndpoint = `/search/movie`;
 
 export const options = {
