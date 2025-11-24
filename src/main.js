@@ -4,7 +4,12 @@ import {
 } from "./modules/favoritesControl.js";
 import { localStorageInit } from "./modules/localStorageInit.js";
 import { searchApi } from "./modules/searchApi.js";
-import { getPopularMovies, getTmdbConfig, accessTokenAuth, apiKey } from "./modules/tmdbApiAccess.js";
+import {
+  accessTokenAuth,
+  apiKey,
+  getPopularMovies,
+  getTmdbConfig,
+} from "./modules/tmdbApiAccess.js";
 // import { accessTokenAuth, apiKey } from "./private.js";
 import "./style.css";
 
@@ -109,13 +114,13 @@ export function renderMovieCards(movieData, configData) {
  */
 getPopularMovies(renderMovieCards);
 
-empty - fav;
+// empty - fav;
 
 /////////////////abood///////////////////////
 
 /////////////////////////////////////////////////////////
 // Search Functionality
-main;
+// main;
 const searchInput = document.getElementById("search-input");
 const form = document.getElementById("search");
 
