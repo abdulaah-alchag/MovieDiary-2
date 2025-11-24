@@ -18,9 +18,18 @@ const options = {
   },
 };
 
+// const errorData = [
+// {
+//   id: 0,
+//   overview: "Load Error!",
+//   poster_path: "",
+//   release_date: "n/a",
+//   title: "n/a",
+// }];
+
 let tmdbConfig;
 /**
- * Get Popular Movie from TMDB
+ * Get Popular Movies from TMDB
  * @param {function} renderMoviesFunc - Reference to the render movie function
  */
 export function getPopularMovies(renderMoviesFunc) {
@@ -42,16 +51,24 @@ export function getPopularMovies(renderMoviesFunc) {
           API_KEY +
           TMDB_PopMov_options
       )
-        .then((res) => res.json())
+        .then((res) => {
+            if (!res.ok) throw new Error("Request Error: Get movie data failed");
+            return (res.json())})
         .then((movieData) => {
           console.log("Fetched movie data", movieData);
           renderMoviesFunc(movieData, configData);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            // renderMoviesFunc(errorData);
+            console.error(err)});
     })
     .catch((err) => console.error(err));
 }
 
+/**
+ * Return last fetched TMDB config data
+ * @return {object}
+ */
 export function getTmdbConfig() {
   return tmdbConfig;
 }
