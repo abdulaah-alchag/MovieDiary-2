@@ -2,7 +2,10 @@ export const accessTokenAuth =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDE4OGY2ZTExYzY1NzlmMDZlMzQzOWJkYmIwNzE4OSIsIm5iZiI6MTc2Mjg5ODAwNC4xNDUsInN1YiI6IjY5MTNiMDU0NzAwNDhkODJlYzlhY2NiZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.G_O2_echWC-sjWgWSdiL6YuaZlbtUL7d5PoEC5260Ik";
 export const apiKey = "a0188f6e11c6579f06e3439bdbb07189";
 
-const TMDB_ApiV3BaseUrl = "https://api.themoviedb.org/3";
+import {
+  TMDB_ApiV3BaseUrl,
+} from "../main.js";
+
 const TMDB_ConfigurationEndpoint = "/configuration";
 const TMDB_PopularMoviesEndpoint = "/movie/popular";
 const NumberOfPages = "1";
