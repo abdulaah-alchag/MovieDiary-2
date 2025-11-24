@@ -49,7 +49,7 @@ export function getPopularMovies(renderMoviesFunc) {
           TMDB_PopularMoviesEndpoint +
           QUERY +
           API_KEY +
-          TMDB_PopMov_options
+          TMDB_PopMov_options,
       )
         .then((res) => {
             if (!res.ok) throw new Error("Request Error: Get movie data failed");
